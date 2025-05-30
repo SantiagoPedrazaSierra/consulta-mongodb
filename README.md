@@ -112,11 +112,88 @@
 
 ### 2. Diseño de propuesta
 
-- Imaginen y propongan **qué colecciones tendrían**.
-- ¿Qué información tendría un documento de pedido? ¿Y un producto?
-- ¿Qué iría dentro del documento y qué se referenciaría?
-- ¿Qué campos serían listas, objetos u otros documentos incrustados?
+**- Imaginen y propongan **qué colecciones tendrían**.**
+![alt text](image-1.png)
 
+**- ¿Qué información tendría un documento de pedido? ¿Y un producto?**
+-Documento de pedido:
+
+    {
+        "_id": "pedido001",
+        "fecha": "2025-05-30T19:00:00Z",
+        "metodoPago": "tarjeta",
+        "modalidad": "mesa",
+        "cliente": {
+        "_id": "cliente123",
+        "nombre": "Juan Pérez",
+        "telefono": "3001234567"
+    },
+    
+    "productos": [
+    {
+        "_id": "prod001",
+        "nombre": "Pizza Hawaiana",
+        "cantidad": 2,
+        "precioUnitario": 25000,
+        "adicionales": [
+        {
+            "nombre": "Extra queso",
+            "precio": 3000
+        }
+        ]
+    }
+    ],
+    "combos": [
+    {
+        "_id": "combo01",
+        "nombre": "Combo Familiar",
+        "cantidad": 1,
+        "precio": 45000
+    }
+    ],
+        "total": 98000 
+    }
+
+-Documento de Producto:
+
+    {
+        "_id": "prod001",
+        "nombre": "Pizza Hawaiana",
+        "precio": 25000,
+        "categoria": "pizza",
+        "disponible": true,
+        "elaborado": true,
+        "ingredientes": [
+            { "nombre": "jamón", "cantidad": "100g" },
+            { "nombre": "piña", "cantidad": "50g" },
+            { "nombre": "queso", "cantidad": "150g" }
+        ]
+    }
+
+
+**- ¿Qué iría dentro del documento y qué se referenciaría?**
+    Incrustado en el pedido (embed):
+
+    Datos del cliente (simplificado si no necesitas más relaciones).
+
+    Productos pedidos con sus cantidades y adicionales.
+
+    Combos pedidos.
+
+    Referenciado:
+
+    Si los productos, clientes o combos cambian con frecuencia o se relacionan con muchas colecciones, podrían referenciarse con solo el _id.
+
+    Ejemplo con referencias:
+
+    "clienteId": "cliente123",
+    "productos": [{ "productoId": "prod001", "cantidad": 2 }]
+
+
+**- ¿Qué campos serían listas, objetos u otros documentos incrustados?**
+
+![alt text](image-2.png)
+    
 ---
 
 ### 3. Documentos JSON
@@ -204,6 +281,10 @@
     Al principio cuesta entender cómo organizar los datos sin dividirlos en tablas, y cómo mantener el orden o la integridad de la información. Es cambiar esa forma de pensar lo más complicado.
 
 **- ¿Qué les gustó del enfoque con documentos?**
+
+    Aunque al principio fue un cambio de mentalidad, la idea de tener datos autosuficientes en documentos  nos pareció muy eficiente para ciertos casos de uso, como sistemas de pedidos o catálogos de productos. Sin embargo, también entendimos que NoSQL no reemplaza a las bases relacionales, sino que es una herramienta más para elegir según el proyecto.
+
+
 
 **- ¿Qué dudas les surgieron al pensar en este nuevo tipo de base de datos?**
 
