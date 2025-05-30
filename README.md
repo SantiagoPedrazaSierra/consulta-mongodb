@@ -38,7 +38,75 @@
 
 **- ¿Qué diferencia hay entre una base de datos relacional (como MySQL) y una base de datos documental como MongoDB?**
 
-**- ¿Qué son documentos y colecciones en MongoDB?*
+![alt text](image.png)
+
+    Una base de datos relacional, como MySQL, organiza los datos en tablas compuestas por filas y columnas. Cada tabla tiene un esquema fijo, es decir, la estructura de los datos debe definirse por adelantado. Las relaciones entre datos se gestionan a través de claves primarias y foráneas, lo que permite realizar operaciones como joins para combinar información de varias tablas.
+
+    Por otro lado, una base de datos documental, como MongoDB, almacena los datos en documentos con formato similar a JSON (llamado BSON internamente). Estos documentos son autocontenidos y flexibles, lo que significa que no necesitan un esquema fijo. Cada documento puede tener una estructura diferente, adaptándose fácilmente a cambios en los datos.
+
+    En cuanto al lenguaje de consulta, MySQL usa SQL, un lenguaje estándar estructurado, mientras que MongoDB utiliza consultas con sintaxis tipo JSON, más intuitivas para los desarrolladores web.
+
+    En términos de escalabilidad, MySQL normalmente escala verticalmente (mejorando el hardware del servidor), mientras que MongoDB fue diseñado para escalar horizontalmente (distribuirse entre varios servidores fácilmente).
+
+    Finalmente, MySQL es ideal para aplicaciones donde los datos están bien estructurados y hay muchas relaciones complejas entre ellos (como sistemas bancarios o de gestión escolar), mientras que MongoDB es excelente para aplicaciones que manejan grandes volúmenes de datos dinámicos o que cambian con frecuencia, como redes sociales, blogs, o tiendas en línea.
+
+    🧠 EN RESUMEN:
+
+    - Usa MySQL si necesitas relaciones fuertes entre tablas, transacciones estrictas y datos bien estructurados.
+
+    - Usa MongoDB si necesitas flexibilidad, velocidad con grandes volúmenes de datos, y tu aplicación cambia de estructura con frecuencia.
+
+**- ¿Qué son documentos y colecciones en MongoDB?**
+
+    En MongoDB, los documentos y las colecciones son las estructuras fundamentales para almacenar y organizar datos. Funcionan de forma parecida a las filas y tablas en bases de datos relacionales, pero son mucho más flexibles.
+
+    📄 DOCUMENTO:
+
+    Un documento en MongoDB es una unidad de datos que se guarda en formato BSON (una versión binaria de JSON). Es como un objeto en JavaScript, compuesto por pares clave: valor. Cada documento puede tener su propia estructura, lo que permite almacenar datos complejos y anidados.
+
+    EJEMPLO DE DOCUMENTO:
+
+    {
+    "nombre": "Nico",
+    "edad": 21,
+    "cursos": ["SQL", "JavaScript", "MongoDB"],
+    "activo": true
+    }
+
+    No necesitas definir una estructura antes de guardar el documento.
+
+    Puedes incluir arreglos, otros documentos dentro del documento (anidados), números, booleanos, etc.
+
+    🗂️ COLECCIÓN:
+
+    Una colección es un grupo de documentos relacionados entre sí. Sería el equivalente a una tabla en una base de datos relacional.
+
+    Todos los documentos dentro de una colección no necesitan tener el mismo formato.
+
+    Puedes pensar en una colección como un "contenedor" que agrupa todos los documentos de un mismo tipo, por ejemplo: usuarios, productos, clientes, etc.
+
+    EJEMPLO:
+
+    Una colección llamada mascotas puede tener estos documentos:
+
+    {
+    "nombre": "Luna",
+    "especie": "Gato"
+    }
+
+    {
+    "nombre": "Max",
+    "especie": "Perro",
+    "edad": 5
+    }
+
+    EN RESUMEN:
+
+    - Un documento es una unidad individual de datos en formato JSON/BSON.
+
+    - Una colección es un conjunto de documentos agrupados por tema o tipo.
+
+    MongoDB te da flexibilidad porque los documentos dentro de una misma colección pueden variar en estructura.
 
 ---
 
@@ -130,6 +198,10 @@
 ### 4. Reflexión
 
 **- ¿Qué fue lo más difícil de imaginar sin tablas?**
+
+    Lo más difícil fue imaginar cómo se manejan las relaciones entre datos sin usar tablas ni claves foráneas. En bases de datos relacionales todo está bien estructurado con tablas conectadas entre sí, pero en MongoDB hay que pensar diferente, usando documentos que contienen toda la información o que se referencian entre sí.
+
+    Al principio cuesta entender cómo organizar los datos sin dividirlos en tablas, y cómo mantener el orden o la integridad de la información. Es cambiar esa forma de pensar lo más complicado.
 
 **- ¿Qué les gustó del enfoque con documentos?**
 
